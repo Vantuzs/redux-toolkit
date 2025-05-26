@@ -1,16 +1,20 @@
 import React from 'react';
-import { increment,decrement } from '../../store/slices/counterSlice';
+import { increment,decrement,setStep } from '../../store/slices/counterSlice';
 import { connect } from 'react-redux';
 
 const Counter = (props) => {
     console.log(props);
-    const {count,step,dispatch} = props
+    const {count,step,increment,decrement,setStep} = props
     return (
         <div>
             <p>Count: {count}</p>
+            <label>
+                Set step: 
+                <input type='number' value={step} onChange={setStep}/>
+            </label>
             <p>Step: {step}</p>
-            <button onClick={()=> dispatch(increment())}>Increment</button>
-            <button onClick={()=> dispatch(decrement())}>Decrement</button>
+            <button onClick={decrement}>Increment</button>
+            <button onClick={increment}>Decrement</button>
         </div>
     );
 }
@@ -22,6 +26,12 @@ function mapStateToProps(state){
     }
 }
 
-// const mapStateToDispatch = {}
+function mapDispatchToProps(dispatch) {
+    return {
+        increment: ()=> dispatch(increment()),
+        decrement: ()=> dispatch(decrement()),
+        setStep: ({target: {value}})=> dispatch(setStep(value))
+    }
+}
 
-export default connect(mapStateToProps,null)(Counter);
+export default connect(mapStateToProps,mapDispatchToProps)(Counter);
