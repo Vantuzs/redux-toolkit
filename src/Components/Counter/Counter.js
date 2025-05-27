@@ -21,8 +21,8 @@ const Counter = (props) => {
 
 function mapStateToProps(state){
     return {
-        count: state.count,
-        step: state.step
+        count: state.counter.count,
+        step: state.counter.step
     }
 }
 
