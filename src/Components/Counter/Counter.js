@@ -3,6 +3,7 @@ import { increment,decrement,setStep } from '../../store/slices/counterSlice';
 import { connect } from 'react-redux';
 import { setLang } from '../../store/slices/langSlice';
 import CONSTANTS from '../../constants';
+import styles from './Counter.module.scss'
 const { LANGUAGE: {EN_US,UA_UA,PL_PL,DE_DE} } = CONSTANTS;
 
 const tranclations = new Map([
