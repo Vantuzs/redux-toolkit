@@ -2,7 +2,10 @@ import Counter from "./Components/Counter/Counter";
 
 function App() {
   return (
-    <Counter/>
+    <>
+      <Header/>
+      <Counter/>
+    </>
   );
 }
 
