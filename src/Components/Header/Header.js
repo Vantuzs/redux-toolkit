@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './Header.module.scss'
 
 const Header = () => {
     return (
-        <header>
+        <header className={styles.header}>
             <h1>My Counter</h1>
             <nav>
                 <ul>

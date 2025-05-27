@@ -1,0 +1,14 @@
+.header {
+    border: 5px solid green;
+    display: flex;
+    justify-content:space-between;
+    padding: 0px 20px;
+    align-items: center;
+    ul{
+        display: flex;
+        li{
+            padding: 5px;
+            list-style-type: none;
+        }
+    }
+}
