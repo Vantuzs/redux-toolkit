@@ -1,9 +1,9 @@
+@use '../../common/styles/template';
+
 .darkTheme{
-    background-color: black;
-    color: gold;
+    @extend %darkTheme
 }
 
-.ligthTheme {
-    background-color: bisque;
-    color: indigo;
+.lightTheme {
+    @extend %lightTheme
 }
