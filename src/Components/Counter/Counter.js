@@ -1,7 +1,7 @@
 import React from 'react';
-import { increment,decrement,setStep } from '../../store/slices/counterSlice';
+import * as counterActionCreators from '../../store/slices/counterSlice';
 import { useSelector,useDispatch } from 'react-redux';
-import { setLang } from '../../store/slices/langSlice';
+import * as langActionCreators from '../../store/slices/langSlice';
 import CONSTANTS from '../../constants';
 import styles from './Counter.module.scss';
 import { setTheme } from '../../store/slices/themeSlice';
@@ -55,7 +55,7 @@ const Counter = (props) => {
     const {count,step} = useSelector((state)=>state.counter);
     const dispatch = useDispatch();
 
-    const actionCreators = bindActionCreators({ setLang, setStep, increment,decrement }, dispatch);
+    const {setStep,setLang,increment,decrement} = bindActionCreators({ ...langActionCreators,...counterActionCreators }, dispatch);
 
     const {countText,stepText,incrementText,decrementText,setStepText} = tranclations.get(language);
 
@@ -66,7 +66,7 @@ const Counter = (props) => {
 
     return (
         <div className={className}>
-            <select value={language} onChange={({target: {value}})=> actionCreators.setLang(value)}>
+            <select value={language} onChange={({target: {value}})=> setLang(value)}>
                 <option value={EN_US}>English</option>
                 <option value={UA_UA}>Ukrainian</option>
                 <option value={PL_PL}>Polish</option>
@@ -76,11 +76,11 @@ const Counter = (props) => {
             <p>{countText}: {count}</p>
             <label>
                 {setStepText} 
-                <input type='number' value={step} onChange={({target: {value}})=> actionCreators.setStep(value)}/>
+                <input type='number' value={step} onChange={({target: {value}})=> setStep(value)}/>
             </label>
             <p>{stepText}: {step}</p>
-            <button onClick={() => actionCreators.increment()}>{incrementText}</button>
-            <button onClick={() => actionCreators.decrement()}>{decrementText}</button>
+            <button onClick={() => increment()}>{incrementText}</button>
+            <button onClick={() => decrement()}>{decrementText}</button>
         </div>
     );
 }
