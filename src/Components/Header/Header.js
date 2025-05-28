@@ -1,9 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import cx from 'classnames';
+import CONSTANTS from '../../constants';
+import { setTheme } from '../../store/slices/themeSlice';
 import styles from './Header.module.scss'
+import { setLang } from '../../store/slices/langSlice';
+const {THEMES} = CONSTANTS
 
-const Header = () => {
+
+const Header = ({theme,language,setTheme}) => {
+    const className = cx(styles.header,{
+        [styles.darkTheme]: theme === THEMES.DARK,
+        [styles.lightTheme]: theme === THEMES.LIGHT
+    })
     return (
-        <header className={styles.header}>
+        <header className={className}>
             <h1>My Counter</h1>
             <nav>
                 <ul>
@@ -14,10 +25,22 @@ const Header = () => {
             </nav>
 
             <div>
-                <button onClic>Switch Theme</button>
+                <button onClick={()=> setTheme()}>Switch Theme</button>
             </div>
         </header>
     );
 }
 
-export default Header;
+const mapStateToProps = (state) =>{
+    return{
+        theme: state.theme,
+        language: state.lang
+    }
+}
+
+const mapDispatchToProps = {
+    setTheme,
+    setLang
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
