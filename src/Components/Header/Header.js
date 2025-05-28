@@ -18,7 +18,7 @@ const Header = (props) => {
     })
     return (
         <header className={className}>
-            <h1>My Counter</h1>
+            <h1>My Site</h1>
             <nav>
                 <ul>
                     <li>Link 1</li>
