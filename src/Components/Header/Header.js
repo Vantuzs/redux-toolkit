@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import cx from 'classnames';
 import CONSTANTS from '../../constants';
 import { setTheme } from '../../store/slices/themeSlice';
@@ -8,7 +8,9 @@ import { setLang } from '../../store/slices/langSlice';
 const {THEMES} = CONSTANTS
 
 
-const Header = ({theme,language,setTheme}) => {
+const Header = (props) => {
+    const theme = useSelector((state)=> state.theme);
+
     const className = cx(styles.header,{
         [styles.darkTheme]: theme === THEMES.DARK,
         [styles.lightTheme]: theme === THEMES.LIGHT
@@ -31,16 +33,16 @@ const Header = ({theme,language,setTheme}) => {
     );
 }
 
-const mapStateToProps = (state) =>{
-    return{
-        theme: state.theme,
-        language: state.lang
-    }
-}
+// const mapStateToProps = (state) =>{
+//     return{
+//         theme: state.theme,
+//         language: state.lang
+//     }
+// }
 
-const mapDispatchToProps = {
-    setTheme,
-    setLang
-}
+// const mapDispatchToProps = {
+//     setTheme,
+//     setLang
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+export default Header;
