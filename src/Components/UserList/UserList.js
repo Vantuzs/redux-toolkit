@@ -7,7 +7,7 @@ const UserList = () => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getUsers('Hello from UserList'));
+        dispatch(getUsers('Hello from UserList')); // users/getUsers/panding
     },[]);
 
     return (
